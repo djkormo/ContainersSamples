@@ -25,3 +25,18 @@ Remember you have 4 hours to play with k8s.
  c) (Optional) Create an nginx deployment:
 
  kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml
+ 
+ 
+ 
+Tips
+
+Clipboard
+
+Shif+Insert > Paste
+Ctrl+Insert -> Copy
+
+installing packages:
+
+yum install package_name
+
+example: yum -y install wget lynx  
