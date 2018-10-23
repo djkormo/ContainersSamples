@@ -40,3 +40,10 @@ installing packages:
 yum install package_name
 
 example: yum -y install wget lynx  
+
+running sample docker container:
+docker run djkormo/chess-ai -d -p 80
+
+docker ps 
+
+
