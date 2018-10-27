@@ -18,4 +18,4 @@ RUN chmod a+x -R /var/www/html/
 ENTRYPOINT ["/usr/sbin/apache2ctl","-D","FOREGROUND"]
 
 # exposing 80
-port EXPOSE 80/tcp 
+EXPOSE 80/tcp 
