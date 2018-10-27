@@ -1,4 +1,5 @@
-FROM huanwei/ubuntu-slim
+#FROM huanwei/ubuntu-slim
+FROM phusion/baseimage
 # author
 MAINTAINER djkormo
 
