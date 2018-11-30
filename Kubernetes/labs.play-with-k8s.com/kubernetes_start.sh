@@ -6,7 +6,10 @@
 #
 # Run with:
 # bash -x <( curl -L url-to-raw-gist )
-#
+# this shell file
+#  https://raw.githubusercontent.com/djkormo/ContainersSamples/master/Kubernetes/labs.play-with-k8s.com/kubernetes_start.sh
+# bash -x <( curl -L https://raw.githubusercontent.com/djkormo/ContainersSamples/master/Kubernetes/labs.play-with-k8s.com/kubernetes_start.sh )
+
 
 # Initialize cluster and FIXUP some play-with-k8s annoyances (fixed kube-dashboard shortlink, update port-number)
 test -d /etc/kubernetes/pki || (
