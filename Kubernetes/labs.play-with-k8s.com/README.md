@@ -2,7 +2,11 @@
 
 https://labs.play-with-k8s.com/
 
-Based on http://collabnix.com/category/kubernetes/play-with-kubernetes/
+Based on 
+
+https://github.com/ajeetraina/kubernetes101
+
+http://collabnix.com/category/kubernetes/play-with-kubernetes/
 
 2. login with your dockerhub or github account
 
