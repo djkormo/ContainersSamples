@@ -14,12 +14,18 @@ az aks install-cli
 ### getting credentials from k8s server
 az aks get-credentials --resource-group myAKSCluster --name myAKSCluster
 
+
+### checking context
+kubectl config current-context
+
+##### myAKSCluster
+
 ### see all nodes  
 kubectl get nodes
 
 
-#####NAME                       STATUS   ROLES   AGE   VERSION
-#####aks-nodepool1-27090461-0   Ready    agent   15m   v1.9.11
+##### NAME                       STATUS   ROLES   AGE   VERSION
+##### aks-nodepool1-27090461-0   Ready    agent   15m   v1.9.11
 
 
 ### opening dashboard
@@ -60,8 +66,6 @@ kubectl get services
 
 
 ### Show service details for  frontend
-
-
 kubectl describe services azure-vote-front
 
 
