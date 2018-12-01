@@ -3,61 +3,73 @@
 
 
 ### create resource group 
+```python
 az group create --name myAKSCluster --location northeurope
+```
 
 ### create first k8s cluster  with one node
+```python
 az aks create --resource-group myAKSCluster --name myAKSCluster --node-count 1 --enable-addons monitoring --generate-ssh-keys
+```
 
-### installing kubectl 
+### installing kubectl  , only for first time
+```python
 az aks install-cli
-
+```
 ### getting credentials from k8s server
 az aks get-credentials --resource-group myAKSCluster --name myAKSCluster
 
 
 ### checking context
+```python
 kubectl config current-context
-
+```
 ##### myAKSCluster
 
-### see all nodes  
+### see all nodes
+```python
 kubectl get nodes
-
+```
 
 ##### NAME                       STATUS   ROLES   AGE   VERSION
 ##### aks-nodepool1-27090461-0   Ready    agent   15m   v1.9.11
 
 
 ### opening dashboard
+```python
 az aks browse --resource-group myAKSCluster --name myAKSCluster
-
+```
 ### running  first sample app
+```python
 kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/azure-voting-app-redis/master/azure-vote-all-in-one-redis.yaml
-
+```
 ##### deployment.apps/azure-vote-back created
 ##### service/azure-vote-back created
 ##### deployment.apps/azure-vote-front created
 ##### service/azure-vote-front created
 
 ### see all pods
+```python
 kubectl get pods
-
+```
 ##### NAME                                READY   STATUS              RESTARTS   AGE
 ##### azure-vote-back-655476c7f7-hbg86    1/1     Running             0          2m49s
 ##### azure-vote-front-764cff8457-74v7g   0/1     ContainerCreating   0          2m49s
 
 
 ### see all deployments
+```python
 kubectl get deployments
-
+```
 ##### NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 ##### azure-vote-back    1         1         1            1           3m59s
 ##### azure-vote-front   1         1         1            0           3m59s
 
 
 ### see all services 
+```python
 kubectl get services 
-
+```
 
 ##### NAME               TYPE           CLUSTER-IP     EXTERNAL-IP       PORT(S)        AGE
 ##### azure-vote-back    ClusterIP      10.0.79.19     <none>            6379/TCP       3m16s
@@ -66,8 +78,9 @@ kubectl get services
 
 
 ### Show service details for  frontend
+```python
 kubectl describe services azure-vote-front
-
+```
 
 ##### Name:                     azure-vote-front
 ##### Namespace:                default
