@@ -3,17 +3,17 @@
 
 
 ### create resource group 
-```python
+```console
 az group create --name myAKSCluster --location northeurope
 ```
 
 ### create first k8s cluster  with one node
-```python
+```console
 az aks create --resource-group myAKSCluster --name myAKSCluster --node-count 1 --enable-addons monitoring --generate-ssh-keys
 ```
 
 ### installing kubectl  , only for first time
-```python
+```console
 az aks install-cli
 ```
 ### getting credentials from k8s server
@@ -21,13 +21,13 @@ az aks get-credentials --resource-group myAKSCluster --name myAKSCluster
 
 
 ### checking context
-```python
+```console
 kubectl config current-context
 ```
 ##### myAKSCluster
 
 ### see all nodes
-```python
+```console
 kubectl get nodes
 ```
 
@@ -36,11 +36,18 @@ kubectl get nodes
 
 
 ### opening dashboard
-```python
+```console
 az aks browse --resource-group myAKSCluster --name myAKSCluster
 ```
+
+#### In case of troubles with seeing objects from dashboard
+```console
+kubectl create -f https://raw.githubusercontent.com/djkormo/ContainersSamples/master/Kubernetes/AKS/kube-dashboard-access.yaml
+```
+
+
 ### running  first sample app
-```python
+```console
 kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/azure-voting-app-redis/master/azure-vote-all-in-one-redis.yaml
 ```
 ##### deployment.apps/azure-vote-back created
@@ -49,7 +56,7 @@ kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/azure-voting-ap
 ##### service/azure-vote-front created
 
 ### see all pods
-```python
+```console
 kubectl get pods
 ```
 ##### NAME                                READY   STATUS              RESTARTS   AGE
@@ -58,7 +65,7 @@ kubectl get pods
 
 
 ### see all deployments
-```python
+```console
 kubectl get deployments
 ```
 ##### NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
@@ -67,7 +74,7 @@ kubectl get deployments
 
 
 ### see all services 
-```python
+```console
 kubectl get services 
 ```
 
@@ -78,7 +85,7 @@ kubectl get services
 
 
 ### Show service details for  frontend
-```python
+```console
 kubectl describe services azure-vote-front
 ```
 
