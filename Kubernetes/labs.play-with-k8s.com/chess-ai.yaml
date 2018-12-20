@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: chess-ai
-          image: "djkormo/chess-ai:1.0"
+          image: "djkormo/chess-ai"
           ports:
             - name: http
               containerPort: 80
