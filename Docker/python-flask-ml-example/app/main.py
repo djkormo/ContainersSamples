@@ -3,7 +3,8 @@
 from pickle import load
 from flask import jsonify, Flask
 from flask import request
-
+# adding swagger UI 
+from flask_swagger_ui import get_swaggerui_blueprint
 app = Flask(__name__)
 
 # loading a model from a file called model.pkl
