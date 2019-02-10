@@ -1,3 +1,13 @@
+Example application in Docker.
+
+Flask, Python, Machine learning model with Scikit-Learn
+
+
+
+#### Tested at https://labs.play-with-docker.com
+
+
+
 #### Dockerfile based on
 #### https://github.com/tiangolo/uwsgi-nginx-docker/tree/master/python3.6
 
