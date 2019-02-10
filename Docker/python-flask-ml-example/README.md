@@ -48,3 +48,17 @@ Answer:
 
 http://localhost:33000/api/docs/
 
+
+
+
+Documentation to read:
+
+https://www.datacamp.com/community/tutorials/machine-learning-models-api-python
+https://www.bogotobogo.com/python/python-REST-API-Http-Requests-for-Humans-with-Flask.php
+https://www.activestate.com/blog/dog-identification-tensorflow-model-python-flask/
+https://medium.freecodecamp.org/a-beginners-guide-to-training-and-deploying-machine-learning-models-using-python-48a313502e5a
+
+
+
+
+
