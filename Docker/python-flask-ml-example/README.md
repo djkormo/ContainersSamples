@@ -1,18 +1,30 @@
-# bases on
-# https://github.com/tiangolo/uwsgi-nginx-docker/tree/master/python3.6
+### bases on
+### https://github.com/tiangolo/uwsgi-nginx-docker/tree/master/python3.6
 
-# building  application from DockerFile
+### building  application from DockerFile
+
 docker build -t my-flask .
 
-# running the container at 33000 host port 
+### running the container at 33000 host port 
 
 docker run -d -p 33000:80 my-flask
 
-# testing from Curl 
+### testing from Curl 
 
 curl -d '{"feature_array": [7.3,0.65,0,1.2,0.065,15,21,0.9946,3.39,0.47,10]}' -H "Content-Type: application/json" -X Post  http://localhost:33000/predict
 
 curl -XPOST http://localhost:33000/predict -d '{"feature_array": [7.3,0.65,0,1.2,0.065,15,21,0.9946,3.39,0.47,10]}'
 
-# testing with Postman
+### testing with Postman
 
+
+http://localhost:33000/predict
+
+in body  as JSON {application/json}
+
+{"feature_array": [7.3,0.65,0,1.2,0.065,15,21,0.9946,3.39,0.47,10]}
+
+
+#### TODO adding swagger documentation
+
+http://localhost:33000/api/docs/
