@@ -6,6 +6,9 @@ Flask, Python, Machine learning model with Scikit-Learn
 
 #### Tested at https://labs.play-with-docker.com
 
+git clone https://github.com/djkormo/ContainersSamples.git
+
+cd ContainersSamples/Docker/python-flask-ml-example/
 
 
 #### Dockerfile based on
