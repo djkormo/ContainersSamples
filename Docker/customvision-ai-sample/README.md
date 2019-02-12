@@ -38,6 +38,8 @@ Some pictures saved in images directory.
 
 Examples:
 
+##### 1
+
 curl -X POST http://127.0.0.1:33000/image -F imageData=@images/kot1.jpg
 
 
@@ -56,6 +58,9 @@ curl -X POST http://127.0.0.1:33000/image -F imageData=@images/kot1.jpg
   "project": ""
 }
 
+
+##### 2
+
 curl -X POST http://127.0.0.1:33000/image -F imageData=@images/kot1.jpg
 
 {
@@ -73,8 +78,9 @@ curl -X POST http://127.0.0.1:33000/image -F imageData=@images/kot1.jpg
   "project": ""
 }
 
+##### 3
 
-$ curl -X POST http://127.0.0.1:33000/image -F imageData=@images/pies1.jpeg
+curl -X POST http://127.0.0.1:33000/image -F imageData=@images/pies1.jpeg
 {
   "created": "2019-02-12T07:41:09.736361",
   "id": "",
@@ -92,7 +98,9 @@ $ curl -X POST http://127.0.0.1:33000/image -F imageData=@images/pies1.jpeg
 
 
 
-$ curl -X POST http://127.0.0.1:33000/image -F imageData=@images/pies2.jpg
+##### 4
+
+curl -X POST http://127.0.0.1:33000/image -F imageData=@images/pies2.jpg
 {
   "created": "2019-02-12T07:41:39.338584",
   "id": "",
@@ -107,6 +115,7 @@ $ curl -X POST http://127.0.0.1:33000/image -F imageData=@images/pies2.jpg
   ],
   "project": ""
 }
-[node1] (local) root@192.168.0.58 ~/ContainersSamples/Docker/customvision-ai-sample
+
+
 
 
