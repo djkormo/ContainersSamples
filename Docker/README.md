@@ -53,5 +53,11 @@ Clipboard
 Shift+Insert > Paste
 Ctrl+Insert -> Copy
 	
+	
+Installing portainer on 9000 port
+
+
+docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer	
+	
 
 	
