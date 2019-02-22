@@ -53,6 +53,28 @@ Clipboard
 Shift+Insert > Paste
 Ctrl+Insert -> Copy
 	
+Using SSH 
+Copy link (for example):
+
+ip172-18-0-153-bho03hcpkul000cmfqk0@direct.labs.play-with-docker.com	
+
+Use in putty (port 22) with your generated private key  in putty generator.
+-------------
+Using username "ip172-18-0-153-bho03hcpkul000cmfqk0".
+Authenticating with public key "rsa-key-20190222"
+Connecting to 40.121.62.105:8022
+###############################################################
+#                          WARNING!!!!                        #
+# This is a sandbox environment. Using personal credentials   #
+# is HIGHLY! discouraged. Any consequences of doing so are    #
+# completely the user's responsibilites.                      #
+#                                                             #
+# The PWD team.                                               #
+###############################################################
+[node1] (local) root@192.168.0.53 ~
+$
+
+-----------
 	
 Installing portainer on 9000 port
 
