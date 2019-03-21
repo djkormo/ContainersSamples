@@ -47,3 +47,73 @@ lista uruchomionych obrazow
 #### docker ps 
 
 
+$ docker ps
+CONTAINER ID        IMAGE                 COMMAND                 CREATED              STATUS              PORTS   NAMES
+47ed748e545b        djkormo/chess-ai      "httpd -D FOREGROUND"   About a minute ago   Up About a minute   0.0.0.0:32768->80/tcp   vigorous_mclean
+053651e5c194        portainer/portainer   "/portainer"            4 minutes ago        Up 4 minutes        0.0.0.0:9000->9000/tcp   portainer
+f1ad183a2c14        djkormo/chess-ai      "httpd -D FOREGROUND"   8 minutes ago        Up 8 minutes        0.0.0.0:8989->80/tcp   epic_booth
+
+Zatrzymanie kontenera pierwszego
+#### docker stop 47ed748e545b
+
+Zatrzymanie kontenera drugiego
+#### docker stop f1ad183a2c14
+
+Wylistowanie obrazow
+#### docker images
+
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+portainer/portainer   latest              19d07168491a        2 weeks ago         74.1MB
+djkormo/chess-ai      latest              215bb3ea93a7        4 months ago        28.4MB
+
+
+
+Usunięcie obrazu 
+
+#### docker rmi 215 (-f)
+
+
+
+Budowanie kontenera z obrazu bazowego
+
+
+#### cd chess-ai/ubuntu/
+
+
+#### cat Dockerfile
+
+cat Dockerfile
+FROM ubuntu:16.04
+
+###### author MAINTAINER djkormo
+RUN apt-get clean -qy
+RUN apt-get update -qy
+
+###### install packages
+RUN apt-get install apache2 git -qy
+
+######clone content of sample app
+RUN git clone https://github.com/djkormo/simple-chess-ai
+
+###### copy content to apache root directory
+RUN cd simple-chess-ai && cp -R . /var/www/html/ && cd .. && rm -r simple-chess-ai/
+RUN chmod a+x -R /var/www/html/
+
+###### running apache
+ENTRYPOINT ["/usr/sbin/apache2ctl","-D","FOREGROUND"]
+
+###### exposing 80 port
+EXPOSE 80/tcp
+
+
+
+
+
+
+
+
+
+
+
+
+
