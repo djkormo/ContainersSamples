@@ -48,10 +48,10 @@ lista uruchomionych obrazow
 
 
 $ docker ps
-CONTAINER ID        IMAGE                 COMMAND                 CREATED              STATUS              PORTS   NAMES
-47ed748e545b        djkormo/chess-ai      "httpd -D FOREGROUND"   About a minute ago   Up About a minute   0.0.0.0:32768->80/tcp   vigorous_mclean
-053651e5c194        portainer/portainer   "/portainer"            4 minutes ago        Up 4 minutes        0.0.0.0:9000->9000/tcp   portainer
-f1ad183a2c14        djkormo/chess-ai      "httpd -D FOREGROUND"   8 minutes ago        Up 8 minutes        0.0.0.0:8989->80/tcp   epic_booth
+>CONTAINER ID        IMAGE                 COMMAND                 CREATED              STATUS              PORTS   NAMES
+>47ed748e545b        djkormo/chess-ai      "httpd -D FOREGROUND"   About a minute ago   Up About a minute   0.0.0.0:32768->80/tcp   vigorous_mclean
+>053651e5c194        portainer/portainer   "/portainer"            4 minutes ago        Up 4 minutes        0.0.0.0:9000->9000/tcp   portainer
+>f1ad183a2c14        djkormo/chess-ai      "httpd -D FOREGROUND"   8 minutes ago        Up 8 minutes        0.0.0.0:8989->80/tcp   epic_booth
 
 Zatrzymanie kontenera pierwszego
 #### docker stop 47ed748e545b
@@ -62,9 +62,9 @@ Zatrzymanie kontenera drugiego
 Wylistowanie obrazow
 #### docker images
 
-REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
-portainer/portainer   latest              19d07168491a        2 weeks ago         74.1MB
-djkormo/chess-ai      latest              215bb3ea93a7        4 months ago        28.4MB
+>REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+>portainer/portainer   latest              19d07168491a        2 weeks ago         74.1MB
+>djkormo/chess-ai      latest              215bb3ea93a7        4 months ago        28.4MB
 
 
 
@@ -82,35 +82,40 @@ Budowanie kontenera z obrazu bazowego
 
 #### cat Dockerfile
 
-cat Dockerfile
-FROM ubuntu:16.04
 
-###### author MAINTAINER djkormo
-RUN apt-get clean -qy
-RUN apt-get update -qy
+>FROM ubuntu:16.04
 
-###### install packages
-RUN apt-get install apache2 git -qy
+>###### author MAINTAINER djkormo
+>RUN apt-get clean -qy
+>RUN apt-get update -qy
 
-######clone content of sample app
-RUN git clone https://github.com/djkormo/simple-chess-ai
+>###### install packages
+>RUN apt-get install apache2 git -qy
 
-###### copy content to apache root directory
-RUN cd simple-chess-ai && cp -R . /var/www/html/ && cd .. && rm -r simple-chess-ai/
-RUN chmod a+x -R /var/www/html/
+>######clone content of sample app
+>RUN git clone https://github.com/djkormo/simple-chess-ai
 
-###### running apache
-ENTRYPOINT ["/usr/sbin/apache2ctl","-D","FOREGROUND"]
+>###### copy content to apache root directory
+>RUN cd simple-chess-ai && cp -R . /var/www/html/ && cd .. && rm -r simple-chess-ai/
+>RUN chmod a+x -R /var/www/html/
 
-###### exposing 80 port
-EXPOSE 80/tcp
+>###### running apache
+>ENTRYPOINT ["/usr/sbin/apache2ctl","-D","FOREGROUND"]
 
-
+>###### exposing 80 port
+>EXPOSE 80/tcp
 
 
+Budowanie obrazu na podstawie Dockerfile
 
+#### docker build -t chess-ai:v1 .
 
-
+Lista obrazow, jak widac pojawiły sie dwa nowe, bazowy i ten pochodny 
+#### docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED              SIZE
+chess-ai              v1                  44fd8342e5ec        About a minute ago   278MB
+ubuntu                16.04               9361ce633ff1        9 days ago           118MB
+portainer/portainer   latest              19d07168491a        2 weeks ago          74.1MB
 
 
 
