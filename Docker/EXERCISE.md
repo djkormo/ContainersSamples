@@ -172,5 +172,29 @@ Lista obrazow
 
 
 
+Przyklad aplikacji camunda
+
+#### docker pull camunda/camunda-bpm-platform:latest
+
+#### docker run -d --name camunda -p 8080:8080 camunda/camunda-bpm-platform:latest
+
+Klikamy na blekitny link i dodajemy /camunda-welcome/index.html
+
+Dane do logowania:
+
+Username: demo
+Password: demo
+
+
+
+Przyklad aplikacji ralph 
+
+#### git clone https://github.com/allegro/ralph.git
+#### cd ralph/docker/
+
+#### docker-compose run web init
+#### docker-compose down
+#### docker-compose up -d
+
 
 
