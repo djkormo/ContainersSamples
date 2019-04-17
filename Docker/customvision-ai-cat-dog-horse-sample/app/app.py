@@ -5,6 +5,8 @@ import io
 
 # Imports for the REST API
 from flask import Flask, request, jsonify
+from flask_restplus import Api
+
 
 # Imports for image procesing
 from PIL import Image
