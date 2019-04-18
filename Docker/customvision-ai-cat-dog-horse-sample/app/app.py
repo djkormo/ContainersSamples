@@ -16,8 +16,8 @@ from predict import initialize, predict_image, predict_url
 
 app = Flask(__name__)
 
-api = Api(app, version='1.0', title='Sample API',
-    description='A sample API',
+api = Api(app, version='1.0', title='Prediction API',
+    description='A prediction API',
 )
 
 # 4MB Max image size limit
