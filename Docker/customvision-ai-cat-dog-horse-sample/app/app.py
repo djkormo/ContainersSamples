@@ -24,7 +24,7 @@ api = Api(app, version='1.0', title='Prediction API',
 
 
 parser = api.parser()
-parser.add_argument('imageData', type=FileStorage, location='.')
+parser.add_argument('imageData', type=FileStorage, location='files')
 
 
 @api.route('/hello')                   #  Create a URL route to this resource
