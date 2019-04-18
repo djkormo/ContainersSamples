@@ -5,7 +5,7 @@ import io
 
 # Imports for the REST API
 from flask import Flask, request, jsonify
-from flask_restplus import Api
+from flask_restplus import Api, Resource, fields
 
 
 # Imports for image procesing
@@ -15,6 +15,10 @@ from PIL import Image
 from predict import initialize, predict_image, predict_url
 
 app = Flask(__name__)
+
+api = Api(app, version='1.0', title='Sample API',
+    description='A sample API',
+)
 
 # 4MB Max image size limit
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 
@@ -30,6 +34,7 @@ def index():
 @app.route('/image', methods=['POST'])
 @app.route('/<project>/image', methods=['POST'])
 @app.route('/<project>/image/nostore', methods=['POST'])
+
 def predict_image_handler(project=None):
     try:
         imageData = None
