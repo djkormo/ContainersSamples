@@ -7,6 +7,7 @@ import io
 from flask import Flask, request, jsonify
 from flask_restplus import Api, Resource, fields
 
+from werkzeug.datastructures import FileStorage
 
 # Imports for image procesing
 from PIL import Image
@@ -14,11 +15,33 @@ from PIL import Image
 # Imports for prediction
 from predict import initialize, predict_image, predict_url
 
+
 app = Flask(__name__)
 
 api = Api(app, version='1.0', title='Prediction API',
     description='A prediction API',
 )
+
+
+parser = api.parser()
+parser.add_argument('imageData', type=FileStorage, location='.')
+
+
+@api.route('/hello')                   #  Create a URL route to this resource
+class HelloWorld(Resource):            #  Create a RESTful resource
+    def get(self):                     #  Create GET endpoint
+        return {'hello': 'world'}
+
+
+@api.route('/image/', endpoint='image')
+class WithParserResource(Resource):
+    @api.expect(parser)
+    def post (self):
+        return {}
+        
+        
+        
+
 
 # 4MB Max image size limit
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 
@@ -74,4 +97,3 @@ if __name__ == '__main__':
 
     # Run the server
     app.run(host='0.0.0.0', port=80)
-
