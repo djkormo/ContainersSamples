@@ -31,7 +31,7 @@ parserhello = api.parser()
 parserhello.add_argument('imageData', type=FileStorage, location='files')
 @api.route('/hello')                   #  Create a URL route to this resource
 class HelloWorld(Resource):            #  Create a RESTful resource
-  @api.expect(parserhello)
+  #@api.expect(parserhello)
   def get(self):                     #  Create GET endpoint
     return {'hello': 'world'}
 
