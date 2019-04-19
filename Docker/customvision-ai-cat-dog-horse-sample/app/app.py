@@ -23,21 +23,24 @@ api = Api(app, version='1.0', title='Prediction API',
 )
 
 
-parser = api.parser()
-parser.add_argument('imageData', type=FileStorage, location='files')
+#parser = api.parser()
+#parser.add_argument('imageData', type=FileStorage, location='files')
 
 
+parserhello = api.parser()
+parserhello.add_argument('imageData', type=FileStorage, location='files')
 @api.route('/hello')                   #  Create a URL route to this resource
 class HelloWorld(Resource):            #  Create a RESTful resource
+	@api.expect(parserhello)
     def get(self):                     #  Create GET endpoint
         return {'hello': 'world'}
 
 
-@api.route('/image/', endpoint='image')
-class WithParserResource(Resource):
-    @api.expect(parser)
-    def post (self):
-        return {}
+#@api.route('/image/', endpoint='image')
+#class WithParserResource(Resource):
+#    @api.expect(parser)
+#    def post (self):
+#        return {}
         
         
         
