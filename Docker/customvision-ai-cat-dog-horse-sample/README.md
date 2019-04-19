@@ -14,7 +14,7 @@ docker build -t  customvision-ai .
 
 How to run locally:
 ==============================================
-docker run -p 127.0.0.1:33000:80 -d customvision-ai
+docker run -p 33000:80 -d customvision-ai
 
 
 
