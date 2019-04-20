@@ -59,7 +59,22 @@ class GanPrediction(Resource):
   #@cors.crossdomain(origin='*')
   @cross_origin()
   def post(self):
-    return {'prediction': 'prediction'}
+    try:
+        imageData = None
+        if ('imageData' in request.files):
+            imageData = request.files['imageData']
+        elif ('imageData' in request.form):
+            imageData = request.form['imageData']
+        else:
+            imageData = io.BytesIO(request.get_data())
+
+        img = Image.open(imageData)
+        results = predict_image(img)
+        return jsonify(results)
+    except Exception as e:
+        print('EXCEPTION:', str(e))
+        return 'Error processing image', 500
+    #return {'prediction': 'prediction'}
     
     
 @app.route("/abc")
