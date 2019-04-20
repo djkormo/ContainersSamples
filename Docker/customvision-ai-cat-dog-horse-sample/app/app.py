@@ -1,11 +1,12 @@
-
 import json
 import os
 import io
 
 # Imports for the REST API
 from flask import Flask, request, jsonify
-from flask_restplus import Api, Resource, fields
+from flask_restplus import Api, Resource, fields, cors
+from flask_cors import CORS, cross_origin
+
 
 from werkzeug.datastructures import FileStorage
 
@@ -17,34 +18,55 @@ from predict import initialize, predict_image, predict_url
 
 
 app = Flask(__name__)
+# enabling CORS
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-api = Api(app, version='1.0', title='Prediction API',
-    description='A prediction API',
+
+api = Api(app, version='1.0', title='Classification API',
+    description='A classification API for cats, dogs and horses in images',
 )
+# name space 
+ns = api.namespace('', description='Operations for Classification API')
 
 
-#parser = api.parser()
-#parser.add_argument('imageData', type=FileStorage, location='files')
-
-
-parserhello = api.parser()
-parserhello.add_argument('imageData', type=FileStorage, location='files')
-@api.route('/hello')                   #  Create a URL route to this resource
+@ns.route('/health')  #  Create a URL route to this resource
 class HelloWorld(Resource):            #  Create a RESTful resource
-  #@api.expect(parserhello)
   def get(self):                     #  Create GET endpoint
-    return {'hello': 'world'}
+    #return {'hello': 'world'}
+    return '', 200
 
 
-#@api.route('/image/', endpoint='image')
-#class WithParserResource(Resource):
-#    @api.expect(parser)
-#    def post (self):
-#        return {}
-        
-        
-        
 
+UPLOAD_KEY = 'imageData'
+UPLOAD_LOCATION = 'files'
+upload_parser = api.parser()
+upload_parser.add_argument(UPLOAD_KEY,
+                           location=UPLOAD_LOCATION,
+                           type=FileStorage,
+                           required=True)
+        
+@ns.route('/prediction')
+class GanPrediction(Resource):
+  @ns.doc(description='Return one of three classes (cat,dog,hose). ' +
+  'Returns the probability of chosen class',
+  responses={
+    200: "Success",
+    400: "Bad request",
+    500: "Internal server error"
+  })
+  @ns.expect(upload_parser)
+  #@cors.crossdomain(origin='*')
+  @cross_origin()
+  def post(self):
+    return {'prediction': 'prediction'}
+    
+    
+@app.route("/abc")
+@cross_origin() # allow all origins all methods.
+def helloWorld():
+  return "Hello, cross-origin-world!"    
+  
 
 # 4MB Max image size limit
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 
