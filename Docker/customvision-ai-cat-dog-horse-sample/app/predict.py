@@ -11,7 +11,7 @@ import sys
 filename = 'model.pb'
 labels_filename = 'labels.txt'
 
-network_input_size = 227
+network_input_size = 0
 
 output_layer = 'loss:0'
 input_node = 'Placeholder:0'
@@ -24,6 +24,17 @@ def initialize():
     with tf.gfile.FastGFile(filename, 'rb') as f:
         graph_def.ParseFromString(f.read())
         tf.import_graph_def(graph_def, name='')
+
+    # Retrieving 'network_input_size' from shape of 'input_node'
+    with tf.Session() as sess:
+        input_tensor_shape = sess.graph.get_tensor_by_name(input_node).shape.as_list()
+        
+    assert len(input_tensor_shape) == 4
+    assert input_tensor_shape[1] == input_tensor_shape[2]
+
+    global network_input_size
+    network_input_size = input_tensor_shape[1]
+   
     print('Success!')
     print('Loading labels...', end='')
     with open(labels_filename, 'rt') as lf:
