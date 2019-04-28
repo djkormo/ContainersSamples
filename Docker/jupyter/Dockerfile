@@ -16,10 +16,8 @@ RUN cp -R PythonForML ~/work && rm -r PythonForML/
 # copying repo to working dir
 RUN cp -R cognitiveclass-applied-data-science-with-python ~/work && rm -r cognitiveclass-applied-data-science-with-python/
 
-# instalacja podstawowych pakietow
-COPY requirements.txt requirements.txt
+# installing base packages 
+COPY requirements.txt requirements.txt 
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt && rm requirements.txt
 
-RUN pip install numpy
