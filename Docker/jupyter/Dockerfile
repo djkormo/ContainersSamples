@@ -8,11 +8,11 @@ RUN git clone https://github.com/hzitoun/cognitiveclass-applied-data-science-wit
 
 
 # copying repo to working dir
-RUN cp -R KursPython ~/work
+RUN cp -R KursPython ~/work && rm -r KursPython/
 
 # copying repo to working dir
-RUN cp -R PythonForML ~/work
+RUN cp -R PythonForML ~/work && rm -r PythonForML/
 
 # copying repo to working dir
-RUN cp -R cognitiveclass-applied-data-science-with-python ~/work
+RUN cp -R cognitiveclass-applied-data-science-with-python ~/work && rm -r cognitiveclass-applied-data-science-with-python/
 
