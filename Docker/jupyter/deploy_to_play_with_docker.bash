@@ -2,7 +2,7 @@
 # build 
 docker build -t minimal-jupyter .
 # run 
-docker run -p 8888:8888 -d minimal-jupyter
+docker run -p 8888:8888 -d -v ~/notebooks:/home/jovyan minimal-jupyter
 
 sleep 15s
 
