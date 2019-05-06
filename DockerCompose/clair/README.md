@@ -8,3 +8,34 @@ This is code and configuration files for a series on getting hands on with Docke
 2. A look at HIDS models and container deployment best practices in [Host Based Intrusion Prevention And Detection For Docker]()
 
 The series walks through a hands on tutorial for Docker security, starting with a threat assessment, implementing security tooling, and building a comprehensive Docker security program.
+
+
+
+# running
+
+
+docker-compose up -d
+
+
+# internal testing 
+docker-compose exec clair netstat -anp
+
+docker-compose exec clairctl netstat -anp
+
+docker-compose exec clairctl clairctl health
+
+docker-compose exec clairctl ls -alh /var/run/docker.sock
+
+
+# pulling special bad image
+
+docker pull imiell/bad-dockerfile
+
+# analyze
+
+docker-compose exec clairctl clairctl analyze -l imiell/bad-dockerfile --log-level Debug --no-clean
+
+
+# report
+
+docker-compose exec clairctl clairctl report -l imiell/bad-dockerfile --log-level Debug --no-clean
