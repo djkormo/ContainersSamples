@@ -8,6 +8,6 @@ RUN dotnet publish -c Release -o /app/ -r win10-x64
 FROM microsoft/dotnet:aspnetcore-runtime
 COPY --from=build-env /app/ /app/
 COPY models/model.onnx /models/
-COPY lib/* /app/
+COPY --from=build-env /lib/* /app/
 WORKDIR /app
 CMD ["dotnet", "inference.dll", "--onnx", "/models/model.onnx"]
