@@ -155,3 +155,5 @@ az aks create --resource-group $AKS_RG \
     --enable-cluster-autoscaler \
     --min-count 1 \
     --max-count 3
+
+	
