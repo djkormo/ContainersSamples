@@ -18,6 +18,44 @@ az configure --defaults group=$ACR_GROUP
 # domyslna lokalizacja rejestru z obrazami 
 az configure --defaults location=$ACR_LOCATION
 
+
+
+INIT_DIR=.
+
+cd $INIT_DIR
+
+#!/bin/bash
+if [ ! -d $INIT_DIR/ssh ]; then
+  
+  mkdir ssh
+  echo "Nie masz katalogu ssh"  
+fi
+cd ssh
+
+
+# creating ssh keys
+ssh-keygen -t rsa -b 2048 -f id_rsa_k8s-develop 
+
+# creating certificates
+
+cd $INIT_DIR
+
+if [ ! -d $INIT_DIR/keys ]; then
+  
+  mkdir keys
+  echo "Nie masz katalogu keys"  
+fi
+cd keys
+
+# generating keys  for tls 
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -out aks-ingress-tls.crt \
+    -keyout aks-ingress-tls.key \
+    -subj "//CN=kormogos.onmicrosoft.com/O=aks-ingress-tls"
+
+cd   $INIT_DIR
+
+
 # odswiezamy zawartosc repozytorium w ramach galêzi master 
 git checkout master
 
@@ -58,9 +96,7 @@ az keyvault secret set \
 
 
 
-
 ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --resource-group $ACR_GROUP --query "loginServer" --output tsv)
-
 
 
 # pobranie najnowszej wersji AKS w danym regionie
@@ -76,7 +112,7 @@ AKS_VM_SIZE=Standard_B2s
 
 az aks create --resource-group $AKS_RG \
 --name $AKS_NAME --node-count $AKS_NODES \
---ssh-key-value $INIT_DIR/ssh/id_rsa_k8s-uat.pub \
+--ssh-key-value $INIT_DIR/ssh/id_rsa_k8s-develop.pub \
 --client-secret=$SP_PASSWORD \
 --service-principal=$APP_ID \
 --enable-addons monitoring \
