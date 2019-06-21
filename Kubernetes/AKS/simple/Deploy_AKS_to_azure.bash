@@ -129,6 +129,19 @@ echo "$AKS_VM_SIZE"
 #--node-vm-size $AKS_VM_SIZE --tags 'environment=develop'  \
 #--disable-rbac
 
+
+# do obs³ugi autoskalowania
+
+az extension add --name aks-preview
+
+az feature register --name VMSSPreview --namespace Microsoft.ContainerService
+
+az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/VMSSPreview')].{Name:name,State:properties.state}"
+
+az provider register --namespace Microsoft.ContainerService
+
+  
+
 az aks create --resource-group $AKS_RG \
     --name  $AKS_NAME \
     --enable-addons monitoring \
@@ -136,5 +149,9 @@ az aks create --resource-group $AKS_RG \
     --generate-ssh-keys \
 	--node-count $AKS_NODES \
 	--node-vm-size $AKS_VM_SIZE \
-	--tags 'environment=develop'  
+	--tags 'environment=develop' \ 
 	--disable-rbac
+	--enable-vmss \
+    --enable-cluster-autoscaler \
+    --min-count 1 \
+    --max-count 3
