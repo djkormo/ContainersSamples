@@ -119,13 +119,22 @@ echo "$AKS_VERSION"
 echo "$APP_ID"
 echo "$AKS_VM_SIZE"
 
-az aks create --resource-group $AKS_RG \
---name $AKS_NAME --node-count $AKS_NODES \
---ssh-key-value $INIT_DIR/ssh/id_rsa_k8s-develop.pub \
---client-secret=$SP_PASSWORD \
---service-principal=$APP_ID \
---enable-addons monitoring \
---kubernetes-version $AKS_VERSION \
---node-vm-size $AKS_VM_SIZE --tags 'environment=develop'  \
---disable-rbac
+#az aks create --resource-group $AKS_RG \
+#--name $AKS_NAME --node-count $AKS_NODES \
+#--ssh-key-value $INIT_DIR/ssh/id_rsa_k8s-develop.pub \
+#--client-secret=$SP_PASSWORD \
+#--service-principal=$APP_ID \
+#--enable-addons monitoring \
+#--kubernetes-version $AKS_VERSION \
+#--node-vm-size $AKS_VM_SIZE --tags 'environment=develop'  \
+#--disable-rbac
 
+az aks create --resource-group $AKS_RG \
+    --name  $AKS_NAME \
+    --enable-addons monitoring \
+    --kubernetes-version $AKS_VERSION \
+    --generate-ssh-keys \
+	--node-count $AKS_NODES \
+	--node-vm-size $AKS_VM_SIZE \
+	--tags 'environment=develop'  
+	--disable-rbac
