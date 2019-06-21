@@ -110,6 +110,15 @@ AKS_NODES=2
 AKS_VM_SIZE=Standard_B2s
 
 
+echo "$AKS_RG"
+echo "$AKS_NAME"
+echo "$AKS_NODES"
+echo "$INIT_DIR"
+echo "$SP_PASSWORD"
+echo "$AKS_VERSION"
+echo "$APP_ID"
+echo "$AKS_VM_SIZE"
+
 az aks create --resource-group $AKS_RG \
 --name $AKS_NAME --node-count $AKS_NODES \
 --ssh-key-value $INIT_DIR/ssh/id_rsa_k8s-develop.pub \
