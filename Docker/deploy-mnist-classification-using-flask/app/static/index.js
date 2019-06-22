@@ -7,9 +7,9 @@
 
 	var Mouse = { x: 0, y: 0 };
 	var lastMouse = { x: 0, y: 0 };
-	context.fillStyle="black";
+	context.fillStyle="white";
 	context.fillRect(0,0,canvas.width,canvas.height);
-	context.color = "white";
+	context.color = "black";
 	context.lineWidth = 15;
     context.lineJoin = context.lineCap = 'round';
 
@@ -85,7 +85,7 @@
 		{
 
 				context.clearRect( 0, 0, 280, 280 );
-				context.fillStyle="black";
+				context.fillStyle="white";
 				context.fillRect(0,0,canvas.width,canvas.height);
 
 		});
