@@ -15,7 +15,7 @@
 
 	debug();
 
-	canvas.addEventListener( "pointermove", function( e )
+	canvas.addEventListener( "mousemove", function( e )
 	{
 		lastMouse.x = Mouse.x;
 		lastMouse.y = Mouse.y;
@@ -25,15 +25,15 @@
 
 	}, false );
 
-	canvas.addEventListener( "pointerdown", function( e )
+	canvas.addEventListener( "mousedown", function( e )
 	{
-		canvas.addEventListener( "pointerdown", onPaint, false );
+		canvas.addEventListener( "mousedown", onPaint, false );
 
 	}, false );
 
-	canvas.addEventListener( "pointerup", function()
+	canvas.addEventListener( "mouseup", function()
 	{
-		canvas.removeEventListener( "pointerup", onPaint, false );
+		canvas.removeEventListener( "mouseup", onPaint, false );
 
 	}, false );
 
