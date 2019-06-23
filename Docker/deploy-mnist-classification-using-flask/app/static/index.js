@@ -38,29 +38,7 @@
 	}, false );
 
 	
-	canvas.addEventListener( "touchmove", function( e )
-	{
-		lastMouse.x = Mouse.x;
-		lastMouse.y = Mouse.y;
 
-		Mouse.x = e.pageX - this.offsetLeft;
-		Mouse.y = e.pageY - this.offsetTop;
-
-	}, false );
-	
-	canvas.addEventListener( "touchstart", function( e )
-	{
-		canvas.addEventListener( "touchstart", onPaint, false );
-
-	}, false );
-
-	canvas.addEventListener( "touchend", function()
-	{
-		canvas.removeEventListener( "touchend", onPaint, false );
-
-	}, false );
-
-	
 	
 	var onPaint = function()
 	{
