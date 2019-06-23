@@ -13,8 +13,8 @@
   context.lineWidth = 15;
     context.lineJoin = context.lineCap = 'round';
   
-  debug();
-
+  debug(); 
+  // mouse 	
   canvas.addEventListener( "mousemove", function( e )
   {
     lastMouse.x = Mouse.x;
@@ -37,6 +37,11 @@
 
   }, false );
 
+  // touch TODO 
+  
+   
+  
+  
   var onPaint = function()
   {	
     context.lineWidth = context.lineWidth;
