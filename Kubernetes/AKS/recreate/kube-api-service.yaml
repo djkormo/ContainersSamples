@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kuard-api
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    app: kuard-api
+  type: LoadBalancer

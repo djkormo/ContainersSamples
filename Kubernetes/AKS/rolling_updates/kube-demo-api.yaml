@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuard-api
+  labels:
+    app: kuard-api
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: kuard-api
+  template:
+    metadata:
+      labels:
+        app: kuard-api
+    spec:
+      containers:
+      - name: app
+        image: gcr.io/kuar-demo/kuard-amd64:blue
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+
+          # Intial delay is set to a high value to have a better
+          # visibility of the ramped deployment
+          initialDelaySeconds: 15
+          periodSeconds: 5
