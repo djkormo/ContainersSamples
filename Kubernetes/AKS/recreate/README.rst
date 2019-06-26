@@ -49,7 +49,7 @@ Notice: it causes downtime.
   watch -n0.3 -x kubectl get po
 
   # let's get from 1.0.0 to 2.0.0
-  kubectl set image  deployment/demo-api app=wojciech11/api-status:2.0.0
+  kubectl set image  deployment/kuard-api gcr.io/kuar-demo/kuard-amd64:green
 
 
   # notice: beacause of the initialDelaySeconds readiness and liveness probes
