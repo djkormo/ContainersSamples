@@ -1,0 +1,17 @@
+#### Based on  https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
+
+kubectl apply -f apache-php-api.yaml
+
+kubectl apply -f apache-php-api-service.yaml
+
+
+kubectl autoscale deployment apache-php-api --cpu-percent=50 --min=1 --max=10
+
+kubectl get hpa
+
+
+
+while true; do curl -X Get http://http://52.236.36.219/; done
+
+
+curl -s "http://http://52.236.36.219/?[1-1000]"
