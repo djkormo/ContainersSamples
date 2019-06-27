@@ -19,6 +19,11 @@ spec:
       containers:
       - name: app
         image: k8s.gcr.io/hpa-example
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 200m
         ports:
         - containerPort: 80
         livenessProbe:
