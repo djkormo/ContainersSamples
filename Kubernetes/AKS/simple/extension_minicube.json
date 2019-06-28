@@ -1,0 +1,25 @@
+{
+  "name": "config-app",
+  "type": "extensions",
+  "location": "[resourceGroup().location]",
+  "apiVersion": "2015-06-15",
+  "dependsOn": [
+    "[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'),copyindex()))]"
+  ],
+  "tags": {
+    "displayName": "config-app"
+  },
+  "properties": {
+    "publisher": "Microsoft.Azure.Extensions",
+    "type": "CustomScript",
+    "typeHandlerVersion": "2.0",
+    "autoUpgradeMinorVersion": true,
+    "settings": {
+      },
+    "protectedSettings": {
+      "commandToExecute": "install_minikube.sh <param2>",
+      "fileUris": ["https://github.com/djkormo/ContainersSamples/blob/master/Kubernetes/AKS/simple/install_minikube.sh"
+      ]  
+    }
+  }
+}
