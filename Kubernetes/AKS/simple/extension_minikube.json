@@ -17,7 +17,7 @@
     "settings": {
       },
     "protectedSettings": {
-      "commandToExecute": "install_minikube.sh <param2>",
+      "commandToExecute": "install_minikube.sh",
       "fileUris": ["https://github.com/djkormo/ContainersSamples/blob/master/Kubernetes/AKS/simple/install_minikube.sh"
       ]  
     }

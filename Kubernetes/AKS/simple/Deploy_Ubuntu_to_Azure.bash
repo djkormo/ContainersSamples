@@ -30,6 +30,21 @@ az vm create \
   
 az vm open-port --port 3389 --resource-group $RG_GROUP --name $VM_NAME  
 
+# instalacja minikube na VM
+
+az vm extension set \
+  --resource-group $RG_GROUP \
+  --vm-name $VM_NAME --name customScript \
+  --publisher Microsoft.Azure.Extensions \
+  --settings ./extension_minikube.json
+
+  
+#  az vm extension set \
+#  --resource-group rg-aks-simple \
+#  --vm-name myUbuntuMinikube14879 --name customScript \
+#  --publisher Microsoft.Azure.Extensions \
+#  --settings ./extension_minikube.json
+
 
 #az vm extension set -g $RG_GROUP --vm-name $VM_NAME \
 #    --name customScript \
