@@ -1,6 +1,6 @@
 # based on https://github.com/AzureRED/MiniKube-on-Azure-VM
 
-
+# based on https://www.brianlinkletter.com/create-a-nested-virtual-machine-in-a-microsoft-azure-linux-vm/
 
 ACR_LOCATION=northeurope
 ACR_GROUP=rg-aks-simple
@@ -38,6 +38,6 @@ az vm open-port --port 22 --resource-group $ACR_GROUP --name $VM_NAME
 	
 	
 #az vm list-sizes \
-#--location eastus \
+#--location northeurope \
 #--query '[].{Name:name,CPU:numberOfCores,Memory:memoryInMb}' \
 #--output table | grep _v3
