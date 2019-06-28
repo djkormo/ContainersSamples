@@ -59,6 +59,9 @@ AKS_NODES=2
 AKS_VM_SIZE=Standard_B2s
 
 
+
+
+
 echo "$AKS_RG"
 echo "$AKS_NAME"
 echo "$AKS_NODES"
