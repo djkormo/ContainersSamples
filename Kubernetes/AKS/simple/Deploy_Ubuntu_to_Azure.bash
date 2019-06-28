@@ -1,3 +1,6 @@
+# based on https://github.com/AzureRED/MiniKube-on-Azure-VM
+
+
 
 ACR_LOCATION=northeurope
 ACR_GROUP=rg-aks-simple
@@ -16,7 +19,7 @@ az vm create \
   --resource-group $ACR_GROUP \
   --name $VM_NAME \
   --image UbuntuLTS \
-  --size Standard_A1_v2  \
+  --size Standard_D2_v3  \
   --admin-username azureuser \
   --admin-password Pa55word2019..
   #--generate-ssh-keys
@@ -32,3 +35,9 @@ az vm open-port --port 22 --resource-group $ACR_GROUP --name $VM_NAME
 	
 	
 	
+	
+	
+#az vm list-sizes \
+#--location eastus \
+#--query '[].{Name:name,CPU:numberOfCores,Memory:memoryInMb}' \
+#--output table | grep _v3
