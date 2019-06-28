@@ -1,3 +1,6 @@
+# based on https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/101-vm-linux-minikube
+
+
 
 # install Virtualbox
 sudo bash -c 'echo "deb https://download.virtualbox.org/virtualbox/debian bionic contrib" >> /etc/apt/sources.list'
@@ -22,3 +25,37 @@ minikube start
 # run first app
 
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
+
+kubectl expose deployment hello-minikube --type=NodePort
+
+curl $(minikube service hello-minikube --url)
+
+
+kubectl run chess-ai-blue --image=djkormo/chess-ai:blue --port=80
+
+kubectl expose deployment chess-ai-blue --type=LoadBalancer --name=chess-ai-blue
+
+
+lscpu | grep -i virtual
+
+#Virtualization:      VT-x
+#Virtualization type: full
+
+
+# install rdp 
+
+echo "Install xfce4"
+sudo apt-get -y install xfce4
+
+echo "Install xrdp"
+sudo apt-get -y install xrdp
+
+echo "Configure xsession"
+sudo echo xfce4-session >~/.xsession
+
+echo "Restart xrdp"
+sudo service xrdp restart
+
+echo "Install Firefox"
+sudo apt-get -y install firefox
+

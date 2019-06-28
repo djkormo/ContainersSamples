@@ -1,22 +1,21 @@
 # based on https://github.com/AzureRED/MiniKube-on-Azure-VM
 
 # based on https://www.brianlinkletter.com/create-a-nested-virtual-machine-in-a-microsoft-azure-linux-vm/
+RND=$RANDOM
 
-ACR_LOCATION=northeurope
-ACR_GROUP=rg-aks-simple
-ACR_NAME=acr$RND
-ACI_NAME=aci$RND
-AKV_NAME=keyvault$RND
-VM_NAME=myUbuntuMinikube
+RG_LOCATION=northeurope
+RG_GROUP=rg-aks-simple
+
+VM_NAME=myUbuntuMinikube$RND
 # domyslna nazwa grupy 
-az configure --defaults group=$ACR_GROUP
+az configure --defaults group=$RG_GROUP
 
 # domyslna lokalizacja rejestru z obrazami 
-az configure --defaults location=$ACR_LOCATION
+az configure --defaults location=$RG_LOCATION
 
 
 az vm create \
-  --resource-group $ACR_GROUP \
+  --resource-group $RG_GROUP \
   --name $VM_NAME \
   --image UbuntuLTS \
   --size Standard_D2_v3  \
@@ -25,10 +24,10 @@ az vm create \
   #--generate-ssh-keys
   
   
-az vm open-port --port 22 --resource-group $ACR_GROUP --name $VM_NAME  
+az vm open-port --port 3389 --resource-group $RG_GROUP --name $VM_NAME  
 
 
-#az vm extension set -g $ACR_GROUP --vm-name $VM_NAME \
+#az vm extension set -g $RG_GROUP --vm-name $VM_NAME \
 #    --name customScript \
 #    --publisher Microsoft.Azure.Extensions \
 #    --settings @C:/developing/Azure/535/AzureAchitectSamples/t9Network/wp-config.json --verbose
