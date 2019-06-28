@@ -1,6 +1,10 @@
 # based on https://github.com/AzureRED/MiniKube-on-Azure-VM
 
 # based on https://www.brianlinkletter.com/create-a-nested-virtual-machine-in-a-microsoft-azure-linux-vm/
+
+
+# based on https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-linux
+
 RND=$RANDOM
 
 RG_LOCATION=northeurope
