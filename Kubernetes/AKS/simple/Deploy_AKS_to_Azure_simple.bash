@@ -22,28 +22,28 @@ az configure --defaults location=$ACR_LOCATION
 az group create --name $ACR_GROUP
 
 # tworzymy rejestr dla kontenerów 
-az acr create  --name $ACR_NAME --sku Basic
+#az acr create  --name $ACR_NAME --sku Basic
 
 # włączenie konta administratorskiego
-az acr update -n  $ACR_NAME --admin-enabled true
+#az acr update -n  $ACR_NAME --admin-enabled true
 
 
 # service principal 
-az keyvault secret set \
-  --vault-name $AKV_NAME \
-  --name $ACR_NAME-pull-pwd \
-  --value $(az ad sp create-for-rbac \
-                --name http://$ACR_NAME-pull \
-                --scopes $(az acr show --name $ACR_NAME --query id --output tsv) \
-                --role acrpull \
-                --query password \
-                --output tsv)
+#az keyvault secret set \
+#  --vault-name $AKV_NAME \
+#  --name $ACR_NAME-pull-pwd \
+#  --value $(az ad sp create-for-rbac \
+#                --name http://$ACR_NAME-pull \
+#                --scopes $(az acr show --name $ACR_NAME --query id --output tsv) \
+#                --role acrpull \
+#                --query password \
+#                --output tsv)
 
 				
-az keyvault secret set \
-    --vault-name $AKV_NAME \
-    --name $ACR_NAME-pull-usr \
-    --value $(az ad sp show --id http://$ACR_NAME-pull --query appId --output tsv)				
+#az keyvault secret set \
+#    --vault-name $AKV_NAME \
+#    --name $ACR_NAME-pull-usr \
+#    --value $(az ad sp show --id http://$ACR_NAME-pull --query appId --output tsv)				
 
 
 
@@ -81,7 +81,7 @@ az aks create --resource-group $AKS_RG \
 	--node-count $AKS_NODES \
 	--node-vm-size $AKS_VM_SIZE \
 	--tags 'environment=develop' 
-	#--disable-rbac
+	--disable-rbac
 
 
 
