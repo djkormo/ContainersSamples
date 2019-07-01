@@ -80,7 +80,7 @@ az aks create --resource-group $AKS_RG \
     --generate-ssh-keys \
 	--node-count $AKS_NODES \
 	--node-vm-size $AKS_VM_SIZE \
-	--tags 'environment=develop' 
+	--tags 'environment=develop'  \
 	--disable-rbac
 
 

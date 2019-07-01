@@ -51,8 +51,28 @@ echo "Install Docker-ce"
 #apt-get install docker-ce
 #apt-cache policy docker-ce
 
-apt-get remove docker docker-engine docker.io
+apt-get remove docker docker-engine docker.io -y
 apt-get install docker.io -y
 systemctl start docker
 systemctl enable docker
+
+
+
+# install helm 
+
+curl -Lo /tmp/helm-linux-amd64.tar.gz https://kubernetes-helm.storage.googleapis.com/helm-v2.14.1-linux-amd64.tar.gz
+tar -xvf /tmp/helm-linux-amd64.tar.gz -C /tmp/
+chmod +x /tmp/linux-amd64/helm && sudo mv /tmp/linux-amd64/helm /usr/local/bin/
+
+# minikube start
+
+# Initialize helm, install Tiller(the helm server side component)
+#helm init
+# Make sure we get the latest list of chart
+#helm repo update
+# * Happy Helming * 
+
+helm ls
+
+
 
