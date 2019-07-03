@@ -48,13 +48,13 @@ curl $ingress -H 'Host: b.domain.com'
 ### command
 
 ```console
-watch kubectl get po
+watch kubectl get po --namespace=my-app
 ```
 
 ### Then deploy version 2 of both applications
 
 ```console
-kubectl apply -f app-a-v2.yaml -f app-b-v2.yaml
+kubectl apply -f app-a-v2.yaml -f app-b-v2.yaml --namespace=my-app
 ```
 
 ### Wait for both applications to be running
@@ -71,17 +71,15 @@ kubectl rollout status deploy my-app-b-v2 -w
 ### update the ingress
 
 ```console
-kubectl apply -f ingress-v2.yaml
+kubectl apply -f ingress-v2.yaml --namespace=my-app
 ```
 
 ### Test if the deployment was successful
 
 ```console
 curl $ingress -H 'Host: a.domain.com'
->Host: my-app-a-v2-6b58d47c5f-nmzds, Version: v2.0.0
 
 curl $ingress -H 'Host: b.domain.com'
->Host: my-app-b-v2-5c9dc59959-hp5kh, Version: v2.0.0
 ```
 
 ### In case you need to rollback to the previous version
