@@ -20,7 +20,7 @@ $ go run main.go
 #### Build
 
 ```
-$ docker build -t containersol/k8s-deployment-strategies .
+$ docker build -t djkormo/k8s-deployment-strategies .
 ```
 
 #### Run
@@ -31,7 +31,7 @@ $ docker run -d \
     -p 8080:8080 \
     -h host-1 \
     -e VERSION=v1.0.0
-    containersol/k8s-deployment-strategies
+    djkormo/k8s-deployment-strategies
 ```
 
 #### Test
