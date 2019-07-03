@@ -1,10 +1,10 @@
 # Create namespace for monitoring (Prometheus, Grafana)
 
 ```console
-$ kubectl create namespace monitoring
+kubectl create namespace monitoring
 ```
 
-# Install Prometheus
+## Install Prometheus
 
 ```console
 helm install \
@@ -14,19 +14,19 @@ helm install \
     stable/prometheus
 ```
 
-## Prometheus pod 	
+### Prometheus pod 	
 
 ```console
-$ kubectl get pod --namespace monitoring  -l release=myprometheus -l component=server
+kubectl get pod --namespace monitoring  -l release=myprometheus -l component=server
 ```
 
-## Port forwarding 
+### Port forwarding 
 
 ```console
 kubectl --namespace monitoring port-forward $(kubectl get pod --namespace monitoring -l release=myprometheus -l component=server -o template --template "{{(index .items 0).metadata.name}}") 9090:9090
 ```
 
-# Install Grafana
+## Install Grafana
 
 ```console
 helm install \
@@ -39,23 +39,46 @@ helm install \
 	--set=service.type=NodePort \
     stable/grafana 
 ```
-## grafana pod	
+### grafana pod	
 ```console
 kubectl get pod --namespace monitoring  -l release=mygrafana -l app=grafana
 ```
 
 
-## Port forwarding 
+### Port forwarding 
 
 ```console
 kubectl --namespace monitoring port-forward $(kubectl get pod --namespace monitoring -l release=mygrafana -l app=grafana -o template --template "{{(index .items 0).metadata.name}}") 3000:3000
 ```
-# Create namespace for application
+## Create namespace for application
+
 ```console
-$ kubectl create namespace my-app
+kubectl create namespace my-app
 ```
 
+## Creating quotas per application namespace
 
+```console
+cat <<EOF > quotas.yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources
+spec:
+  hard:
+    pods: "20"
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "3"
+    limits.memory: 2Gi
+    requests.nvidia.com/gpu: 4
+EOF
+```
 
+# applying quotas to namespace
 
+```console
+kubectl apply -f ./quotas.yaml --namespace=my-app
+
+```
 
