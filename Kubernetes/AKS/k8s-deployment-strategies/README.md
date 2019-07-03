@@ -81,10 +81,10 @@ metadata:
 spec:
   hard:
     pods: "20"
-    requests.cpu: "1"
-    requests.memory: 1Gi
-    limits.cpu: "3"
-    limits.memory: 3Gi
+    requests.cpu: "2"
+    requests.memory: 2Gi
+    limits.cpu: "4"
+    limits.memory: 4Gi
     requests.nvidia.com/gpu: 4
 EOF
 ```
