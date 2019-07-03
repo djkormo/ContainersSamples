@@ -7,23 +7,31 @@ Recreate deployment
 
 ## In practice
 
-```
-# Deploy the first application
+
+### Deploy the first application
 
 ```console
 kubectl apply -f app-v1.yaml --namespace=my-app
 ```
 
+#### List all pods
+
 ```console
 kubectl get pods |grep my-app-re
 ```
 
-# Then deploy version 2 of the application
+### Then deploy version 2 of the application
+
 ```console
 kubectl apply -f app-v2.yaml --namespace=my-app
+```
+
+#### List all pods
+
+```console
 kubectl get pods |grep my-app-re
 ```
-# Delete deployment
+####` Delete deployment
 
 ```console
 $ kubectl delete deployment/my-app-re --namespace=my-app
