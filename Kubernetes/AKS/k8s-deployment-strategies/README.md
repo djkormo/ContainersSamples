@@ -1,4 +1,9 @@
-# Create namespace for monitoring (Prometheus, Grafana)
+
+# How to prepare your Kubernetes cluster for monitoring pods deployments.
+
+
+
+## Create namespace for monitoring (Prometheus, Grafana)
 
 ```console
 kubectl create namespace monitoring
@@ -49,7 +54,16 @@ kubectl get pod --namespace monitoring  -l release=mygrafana -l app=grafana
 
 ```console
 kubectl --namespace monitoring port-forward $(kubectl get pod --namespace monitoring -l release=mygrafana -l app=grafana -o template --template "{{(index .items 0).metadata.name}}") 3000:3000
+```console
+
+# If service.type=LoadBalancer was chosen for Grafana run 
+
+```console
+kubectl get svc --namespace monitoring  mygrafana
 ```
+to get EXTERNAL-IP and PORT
+
+
 ## Create namespace for application
 
 ```console
@@ -75,7 +89,7 @@ spec:
 EOF
 ```
 
-# applying quotas to namespace
+### applying quotas to namespace
 
 ```console
 kubectl apply -f ./quotas.yaml --namespace=my-app
