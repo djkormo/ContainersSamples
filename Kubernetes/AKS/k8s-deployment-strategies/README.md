@@ -84,7 +84,7 @@ spec:
     requests.cpu: "1"
     requests.memory: 1Gi
     limits.cpu: "3"
-    limits.memory: 2Gi
+    limits.memory: 3Gi
     requests.nvidia.com/gpu: 4
 EOF
 ```

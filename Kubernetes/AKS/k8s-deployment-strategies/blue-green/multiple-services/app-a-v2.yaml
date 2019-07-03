@@ -22,7 +22,7 @@ metadata:
   labels:
     app: my-app
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: my-app-a
@@ -39,6 +39,13 @@ spec:
       containers:
       - name: my-app-a
         image: containersol/k8s-deployment-strategies
+        resources:
+          limits:
+            cpu: "0.2"
+            memory: "200Mi"
+          requests:
+            cpu: "0.1"
+            memory: "100Mi"
         ports:
         - name: http
           containerPort: 8080

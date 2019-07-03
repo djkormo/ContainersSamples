@@ -29,20 +29,34 @@ following parameters to increase the deployment time:
 
 ## In practice
 
-```bash
-# Deploy the first application
-$ kubectl apply -f app-v1.yaml
+### Deploy the first application
+
+```console
+kubectl apply -f app-v1.yaml --namespace=my-app
+```
+
+service/my-app created
+deployment.apps/my-app created
 
 # Test if the deployment was successful
-$ curl $(minikube service my-app --url)
+
+
+kubectl get service my-app
+
 2018-01-28T00:22:04+01:00 - Host: host-1, Version: v1.0.0
 
 # To see the deployment in action, open a new terminal and run the following
 # command
-$ watch kubectl get po
+
+```console
+kubectl get po --namespace=my-app
+```
 
 # Then deploy version 2 of the application
-$ kubectl apply -f app-v2.yaml
+
+```console
+kubectl apply -f app-v2.yaml --namespace=my-app
+```
 
 # Test the second deployment progress
 $ service=$(minikube service my-app --url)

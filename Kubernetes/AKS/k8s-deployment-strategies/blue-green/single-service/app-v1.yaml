@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app
+  name: my-app-bg
   labels:
-    app: my-app
+    app: my-app-bg
 spec:
   type: NodePort
   ports:
@@ -13,33 +13,40 @@ spec:
 
   # Note here that we match both the app and the version
   selector:
-    app: my-app
+    app: my-app-bg
     version: v1.0.0
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-v1
+  name: my-app-bg-v1
   labels:
-    app: my-app
+    app: my-app-bg
 spec:
-  replicas: 3
+  replicas: 8
   selector:
     matchLabels:
-      app: my-app
+      app: my-app-bg
       version: v1.0.0
   template:
     metadata:
       labels:
-        app: my-app
+        app: my-app-bg
         version: v1.0.0
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9101"
     spec:
       containers:
-      - name: my-app
+      - name: my-app-bg
         image: containersol/k8s-deployment-strategies
+        resources:
+          limits:
+            cpu: "0.2"
+            memory: "200Mi"
+          requests:
+            cpu: "0.1"
+            memory: "100Mi"
         ports:
         - name: http
           containerPort: 8080

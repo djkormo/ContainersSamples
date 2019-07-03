@@ -28,7 +28,14 @@ spec:
     spec:
       containers:
       - name: my-app-re
-        image: djkormo/chess-ai:green
+        image: djkormo/chess-ai
+        resources:
+          limits:
+            cpu: "0.2"
+            memory: "200Mi"
+          requests:
+            cpu: "0.1"
+            memory: "100Mi"
         ports:
         - name: http
           containerPort: 80
