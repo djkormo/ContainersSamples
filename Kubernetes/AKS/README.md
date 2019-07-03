@@ -17,8 +17,9 @@ az aks create --resource-group myAKSCluster --name myAKSCluster --node-count 1 -
 az aks install-cli
 ```
 ### getting credentials from k8s server
+```console
 az aks get-credentials --resource-group myAKSCluster --name myAKSCluster
-
+```
 
 ### checking context
 ```console
