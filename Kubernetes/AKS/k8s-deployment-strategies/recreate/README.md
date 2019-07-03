@@ -31,8 +31,8 @@ kubectl apply -f app-v2.yaml --namespace=my-app
 ```console
 kubectl get pods |grep my-app-re
 ```
-####` Delete deployment
+#### Delete deployment
 
 ```console
-$ kubectl delete deployment/my-app-re --namespace=my-app
+kubectl delete deployment/my-app-re --namespace=my-app
 ```
