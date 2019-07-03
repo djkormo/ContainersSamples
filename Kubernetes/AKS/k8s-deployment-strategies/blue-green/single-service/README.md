@@ -48,11 +48,11 @@ kubectl rollout status deploy my-app-v2 -w
 ### Side by side, 3 pods are running with version 2 but the service still send
 ### traffic to the first deployment.
 
-### If necessary, you can manually test one of the pod by port-forwarding it to
-### your local environment.
+If necessary, you can manually test one of the pod by port-forwarding it to
+your local environment.
 
-### Once your are ready, you can switch the traffic to the new version by patching
-### the service to send traffic to all pods with label version=v2.0.0
+Once your are ready, you can switch the traffic to the new version by patching
+the service to send traffic to all pods with label version=v2.0.0
 
 ```console
 kubectl patch service my-app -p '{"spec":{"selector":{"version":"v2.0.0"}}}'
@@ -81,5 +81,5 @@ kubectl delete deploy my-app-v1
 ### Cleanup
 
 ```console
-$ kubectl delete all -l app=my-app
+kubectl delete all -l app=my-app
 ```
