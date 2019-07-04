@@ -100,5 +100,7 @@ kubectl apply -f ./quotas.yaml --namespace=my-app
 ![kubernetes monitoring deployment](monitoring.png)
 
 
+#### based on https://itnext.io/using-prometheus-in-azure-kubernetes-service-aks-ae22cada8dd9
+
 
 
