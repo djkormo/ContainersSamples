@@ -36,7 +36,7 @@ kubectl apply -f app-v1.yaml --namespace=my-app
 ```
 
 service/my-app created
-deployment.apps/my-app created
+deployment.apps/my-app-ram created
 
 ### Test if the deployment was successful
 
@@ -58,13 +58,13 @@ kubectl apply -f app-v2.yaml --namespace=my-app
 ```
 
 ### Test the second deployment progress
-service=$(minikube service my-app --url)
+service=$(minikube service my-app-ram --url)
 while sleep 0.1; do curl "$service"; done
 
 ### In case you discover some issue with the new version, you can undo the
 ### rollout
 ```console
-kubectl rollout undo deploy my-app
+kubectl rollout undo deploy my-app-ram
 ```
 
 
@@ -72,17 +72,24 @@ kubectl rollout undo deploy my-app
 ### subset of users
 
 ```console
-kubectl rollout pause deploy my-app
+kubectl rollout pause deploy my-app-ram
 ```
 
 ### Then if you are satisfy with the result, rollout
 
 ```console
-kubectl rollout resume deploy my-app
+kubectl rollout resume deploy my-app-ram
 ```
 
 ### Cleanup
 
 ```bash
-kubectl delete all -l app=my-app
+kubectl delete all -l app=my-app-ram
+```
+
+
+#### Filter in Grafana
+
+```console
+sum(kube_pod_labels{label_app="my-app-ram"}) by (label_app,label_version)
 ```
