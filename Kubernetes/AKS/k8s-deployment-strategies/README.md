@@ -96,3 +96,9 @@ kubectl apply -f ./quotas.yaml --namespace=my-app
 
 ```
 
+
+![kubernetes monitoring deployment](monitoring.png)
+
+
+
+
