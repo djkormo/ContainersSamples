@@ -7,4 +7,8 @@ WORKDIR /app
 COPY --from=build-env /go/bin/hey /app
 COPY loadtest.sh /app
 
+# fixing for permission denied issues
+
+RUN  chmod +x /app/loadtest.sh
+
 ENTRYPOINT ["/app/loadtest.sh"]

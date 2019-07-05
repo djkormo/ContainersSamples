@@ -18,6 +18,11 @@ ENV PKG=github.com/kubernetes-up-and-running/kuard
 ENV ARCH=amd64
 ENV VERSION=test
 
+
+# fixing for permission denied issues
+
+RUN  chmod +x build/build.sh
+
 # Do the build. Script is part of incoming sources.
 RUN build/build.sh
 
