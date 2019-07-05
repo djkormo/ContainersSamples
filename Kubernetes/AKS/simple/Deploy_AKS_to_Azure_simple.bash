@@ -93,5 +93,9 @@ ACR_ID=$(az acr show -n $ACR_NAME -g $AKS_RG --query "id" -o tsv)
 az role assignment create --assignee $CLIENT_ID --role acrpull --scope $ACR_ID
 
 	
+# Grant for Azure Devops to push to ACR 	
+registryPassword=$(az ad sp create-for-rbac -n $ACR_NAME-push --scopes $ACR_ID --role acrpush --query password -o tsv)
+
+echo $registryPassword
 
 
