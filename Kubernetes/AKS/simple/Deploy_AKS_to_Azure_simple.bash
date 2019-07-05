@@ -22,10 +22,10 @@ az configure --defaults location=$ACR_LOCATION
 az group create --name $ACR_GROUP
 
 # tworzymy rejestr dla kontenerów 
-#az acr create  --name $ACR_NAME --sku Basic
+az acr create  --name $ACR_NAME --sku Basic
 
 # włączenie konta administratorskiego
-#az acr update -n  $ACR_NAME --admin-enabled true
+az acr update -n  $ACR_NAME --admin-enabled true
 
 
 # service principal 
@@ -55,7 +55,7 @@ AKS_VERSION=$(az aks get-versions -l $ACR_LOCATION --query 'orchestrators[-1].or
 
 AKS_RG=$ACR_GROUP
 AKS_NAME=aks-simple$RND
-AKS_NODES=2
+AKS_NODES=1
 AKS_VM_SIZE=Standard_B2s
 
 
@@ -83,5 +83,15 @@ az aks create --resource-group $AKS_RG \
 	--tags 'environment=develop'  \
 	--disable-rbac
 
+	
+# 1. Grant the AKS-generated service principal pull access to our ACR, the AKS cluster will be able to pull images of our ACR
+
+CLIENT_ID=$(az aks show -g $AKS_RG -n $AKS_NAME --query "servicePrincipalProfile.clientId" -o tsv)
+
+ACR_ID=$(az acr show -n $ACR_NAME -g $AKS_RG --query "id" -o tsv)
+
+az role assignment create --assignee $CLIENT_ID --role acrpull --scope $ACR_ID
+
+	
 
 
