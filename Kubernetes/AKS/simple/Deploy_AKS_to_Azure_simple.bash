@@ -98,7 +98,7 @@ registryPassword=$(az ad sp create-for-rbac -n $ACR_NAME-push --scopes $ACR_ID -
 
 registryName=$(az acr show -n $ACR_NAME -g $AKS_RG --query name)
 
-registryLogin=$(az ad sp show --id http://$ACR_NAME-push --query $ACR_ID -o tsv)
+registryLogin=$(az ad sp show --id http://$ACR_NAME-push --query appId -o tsv)
 
 
 echo "CLIENT_ID"
