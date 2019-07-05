@@ -98,14 +98,40 @@ registryPassword=$(az ad sp create-for-rbac -n $ACR_NAME-push --scopes $ACR_ID -
 
 registryName=$(az acr show -n $ACR_NAME -g $AKS_RG --query name)
 
+registryLogin=$(az ad sp show --id http://$ACR_NAME-push --query $ACR_ID -o tsv)
+
+
+echo "CLIENT_ID"
+echo $CLIENT_ID
+
+
+echo "ACR_ID"
+echo $ACR_ID
+
 echo "registryName"
 echo $registryName
+
+
+echo "registryLogin"
+echo $registryLogin
 
 echo "registryPassword"
 echo $registryPassword 
 
+
+echo "CLIENT_ID" >> deploy_aks_simple.log
+echo $CLIENT_ID >> deploy_aks_simple.log
+
+
+echo "ACR_ID" >> deploy_aks_simple.log
+echo $ACR_ID >> deploy_aks_simple.log
+
 echo "registryName" >> deploy_aks_simple.log
 echo $registryName >> deploy_aks_simple.log
+
+echo "registryLogin" >> deploy_aks_simple.log
+echo $registryLogin >> deploy_aks_simple.log
+
 
 echo "registryPassword" >> deploy_aks_simple.log
 echo $registryPassword >> deploy_aks_simple.log
