@@ -96,13 +96,21 @@ az role assignment create --assignee $CLIENT_ID --role acrpull --scope $ACR_ID
 # Grant for Azure Devops to push to ACR 	
 registryPassword=$(az ad sp create-for-rbac -n $ACR_NAME-push --scopes $ACR_ID --role acrpush --query password -o tsv)
 
-registryName=$(az acr show -n $ACR_NAME -g $AKS_RG--query name)
+registryName=$(az acr show -n $ACR_NAME -g $AKS_RG --query name)
 
 echo "registryName"
 echo $registryName
 
 echo "registryPassword"
-echo $registryPassword
+echo $registryPassword 
+
+echo "registryName" >> deploy_aks_simple.log
+echo $registryName >> deploy_aks_simple.log
+
+echo "registryPassword" >> deploy_aks_simple.log
+echo $registryPassword >> deploy_aks_simple.log
+
+
 
 
 
