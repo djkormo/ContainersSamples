@@ -30,9 +30,9 @@ API_URL = 'http://petstore.swagger.io/v2/swagger.json' # Our API url (can of cou
 #swaggerui_blueprint = get_swaggerui_blueprint(
 #SWAGGER_URL, # Swagger UI static files will be #mapped to '{SWAGGER_URL}/dist/'
 #API_URL,
-config={ # Swagger UI config overrides
-'app_name': "Test application"
-},
+#config={ # Swagger UI config overrides
+#'app_name': "Test application"
+#},
 # oauth_config={ # OAuth config. See https://github.com/swagger-api/swagger-ui#oauth2-configuration .
 # 'clientId': "your-client-id",
 # 'clientSecret': "your-client-secret-if-required",
@@ -51,7 +51,21 @@ config={ # Swagger UI config overrides
 with open("model.pkl", "rb") as fr:
     model = load(fr)
 
-	
+
+@app.route("/abc")
+@cross_origin() # allow all origins all methods.
+def helloWorld():
+  return "Hello, cross-origin-world!"    
+  
+
+# 4MB Max image size limit
+app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 
+
+# Default route just shows simple text
+@app.route('/')
+def index():
+    return 'Python wine model '
+
 	
 
 @app.route('/predict', methods=['POST'])
@@ -67,5 +81,12 @@ def index():
     return jsonify(response)
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=80)
+#if __name__ == '__main__':
+#    app.run(host='0.0.0.0', debug=True, port=80)
+	
+#if __name__ == '__main__':
+    # Load and intialize the model
+    initialize()
+	
+    # Run the server
+    app.run(host='0.0.0.0',debug=True, port=80)
