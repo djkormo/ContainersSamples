@@ -16,7 +16,7 @@ RUN echo "deb-src http://gb.archive.ubuntu.com/ubuntu/ trusty-proposed restricte
 RUN cat /etc/apt/sources.list
 
 RUN apt-get -y update 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils perl-base perl 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils perl-base perl  wget 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y  autoconf automake libtool libc6-dev
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q libpng12-dev libjpeg62-dev g++ #libtiff4-dev
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q libopencv-dev libtesseract-dev git cmake
