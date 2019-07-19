@@ -30,9 +30,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get build-dep -y python-imaging --fix-mis
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick
 
 
-RUN wget http://www.leptonica.org/source/leptonica-1.70.tar.gz
-RUN tar -zxvf leptonica-1.70.tar.gz
-RUN cd leptonica-1.70/
+#RUN wget http://www.leptonica.org/source/leptonica-1.70.tar.gz
+RUN wgethttp://www.leptonica.org/source/leptonica-1.78.0.tar.gz
+RUN tar -zxvf leptonica-1.78.0.tar.gz
+RUN cd leptonica-1.78.0/
 RUN ./autobuild
 RUN ./configure
 RUN make
