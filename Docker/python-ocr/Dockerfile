@@ -12,7 +12,7 @@ RUN cat  repos.txt >> /etc/apt/sources.list
 
 RUN cat /etc/apt/sources.list
 
-RUN apt-get -y update 
+#RUN apt-get -y update 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils perl-base perl  wget 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y  autoconf automake libtool libc6-dev
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q libpng12-dev libjpeg62-dev g++ #libtiff4-dev
@@ -27,7 +27,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get build-dep -y python-imaging --fix-mis
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick
 
 
-#RUN wget http://www.leptonica.org/source/leptonica-1.70.tar.gz
 RUN wget http://www.leptonica.org/source/leptonica-1.78.0.tar.gz
 RUN tar -zxvf leptonica-1.78.0.tar.gz
 RUN ls -la
@@ -38,19 +37,21 @@ RUN  ./autogen.sh
 RUN  ./configure
 RUN make
 RUN make install
-RUN ldconf
+RUN ldconfig
 
 WORKDIR "/"
 
-RUN wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz
-RUN tar -zxvf tesseract-ocr-3.02.02.tar.gz
-RUN cd tesseract-ocr/
+#RUN wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz
+RUN wget https://github.com/tesseract-ocr/tesseract/archive/3.05.02.tar.gz
+RUN tar -zxvf 3.05.02.tar.gz
+RUN ls -la
+#RUN cd 3.05.02/
+WORKDIR "/tesseract-3.05.02"
+RUN ls -la
 RUN ./autogen.sh
 RUN ./configure
 RUN make
 RUN make install
 RUN ldconfig
-
-
 
 
