@@ -5,13 +5,8 @@ from ubuntu:16.04
 
 
 MAINTAINER  djkormo <djkormo@gmail.com>
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty   main universe" >> /etc/apt/sources.list
-RUN echo "deb-src http://archive.ubuntu.com/ubuntu trusty  main restricted" >> /etc/apt/sources.list
-RUN echo "deb-src http://gb.archive.ubuntu.com/ubuntu/ trusty restricted main universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb-src http://gb.archive.ubuntu.com/ubuntu/ trusty-updates restricted main universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb-src http://gb.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb-src http://security.ubuntu.com/ubuntu trusty-security restricted main universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb-src http://gb.archive.ubuntu.com/ubuntu/ trusty-proposed restricted main universe multiverse" >> /etc/apt/sources.list
+
+RUN COPY  repos.txt .
 
 RUN cat /etc/apt/sources.list
 
@@ -31,7 +26,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick
 
 
 #RUN wget http://www.leptonica.org/source/leptonica-1.70.tar.gz
-RUN wgethttp://www.leptonica.org/source/leptonica-1.78.0.tar.gz
+RUN wget http://www.leptonica.org/source/leptonica-1.78.0.tar.gz
 RUN tar -zxvf leptonica-1.78.0.tar.gz
 RUN cd leptonica-1.78.0/
 RUN ./autobuild
