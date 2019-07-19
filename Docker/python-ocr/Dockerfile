@@ -6,7 +6,9 @@ from ubuntu:16.04
 
 MAINTAINER  djkormo <djkormo@gmail.com>
 
-RUN COPY  repos.txt .
+COPY repos.txt .
+
+RUN cat  repos.txt >> /etc/apt/sources.list
 
 RUN cat /etc/apt/sources.list
 
@@ -28,9 +30,27 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick
 #RUN wget http://www.leptonica.org/source/leptonica-1.70.tar.gz
 RUN wget http://www.leptonica.org/source/leptonica-1.78.0.tar.gz
 RUN tar -zxvf leptonica-1.78.0.tar.gz
+RUN ls -la
 RUN cd leptonica-1.78.0/
-RUN ./autobuild
+WORKDIR "/leptonica-1.78.0"
+RUN ls -la
+RUN  ./autogen.sh
+RUN  ./configure
+RUN make
+RUN make install
+RUN ldconf
+
+WORKDIR "/"
+
+RUN wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.02.tar.gz
+RUN tar -zxvf tesseract-ocr-3.02.02.tar.gz
+RUN cd tesseract-ocr/
+RUN ./autogen.sh
 RUN ./configure
 RUN make
-RUN sudo make install
-RUN sudo ldconfig
+RUN make install
+RUN ldconfig
+
+
+
+
