@@ -1,0 +1,89 @@
+# clone repo
+
+git clone https://github.com/djkormo/ContainersSamples.git
+
+
+# start cluster
+
+bash ContainersSamples/Kubernetes/labs.play-with-k8s.com/kubernetes_start.sh
+
+
+
+git clone https://github.com/ajeetraina/kubernetes101/
+
+bash kubernetes101/install/bootstrap.sh
+
+
+
+
+Add worker nodes to k8s
+
+
+kubectl get all
+
+kubectl get pods --all-namespaces
+
+
+
+kubectl get nodes -o json |jq ".items[] | {name:.metadata.name} + .status.capacity"
+
+# installing ssl
+yum install -y openssl
+
+# installing helm 
+
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get > get_helm.sh
+
+chmod 700 get_helm.sh
+
+./get_helm.sh
+
+helm init
+
+#kubectl --namespace kube-system create serviceaccount tiller
+#kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+#helm init --service-account tiller --upgrade
+
+
+helm version 
+
+#instaling prometheus and grafana
+
+kubectl create namespace monitoring
+
+
+helm install \
+    --namespace=monitoring \
+    --name=myprometheus \
+    --version=7.0.0 \
+	--set=service.type=LoadBalancer \
+    stable/prometheus
+	
+	
+kubectl get pod --namespace monitoring  -l release=myprometheus -l component=server
+
+
+helm install \
+    --namespace=monitoring \
+    --name=mygrafana \
+    --version=1.12.0 \
+    --set=adminUser=admin \
+    --set=adminPassword=admin \
+	--set=service.type=NodePort \
+    stable/grafana 
+	
+helm install \
+    --namespace=monitoring \
+    --name=mygrafana \
+    --version=1.12.0 \
+    --set=adminUser=admin \
+    --set=adminPassword=admin \
+    --set=service.type=LoadBalancer \   # if IP should by outside 
+	stable/grafana 	
+		
+		
+		
+Based on http://collabnix.com/category/kubernetes/play-with-kubernetes/
+
+
+		
