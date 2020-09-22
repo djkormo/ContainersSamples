@@ -18,6 +18,6 @@ RUN chmod 777 /temp
 
 # Change to non-root privilege
 
-USER non-root-postgres
+USER non-root-postgres-user
 
 EXPOSE 5432
