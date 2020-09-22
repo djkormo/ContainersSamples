@@ -7,14 +7,14 @@ RUN mkdir temp
 
 # Create group and user
 
-RUN groupadd -g 1001 non-root-postgres-group
-RUN useradd -u 1001 non-root-postgres-user --group non-root-postgres-group
-
+RUN addgroup -g 1000 non-root-postgres-group
+# RUN useradd -u 1000 non-root-postgres-user --group non-root-postgres-group
+RUN adduser -u 1000 non-root-postgres-user -G non-root-postgres-group -D
 # Set user rights to allow the on-root-postgres-user 
 # to access the temp folder
 
-RUN chown -R non-root-postgres-user:non-root-postgres-group /temp
-RUN chmod 777 /temp
+RUN chown -R non-root-postgres-user:non-root-postgres-group /tmp
+RUN chmod 777 /tmp
 
 # Change to non-root privilege
 
