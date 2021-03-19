@@ -14,7 +14,7 @@ repo-login:
         docker login $(DOCKER_REPO)
 
 run: ## Run container on port configured in `config.env`
-        docker run --name kubespray-installer -it  $(DOCKER_REPO)/$(APP_NAME):$(VERSION)  bash
+        docker run --name kubespray-installer -it  kubespray-installer:latest  bash
 
 stop: ## Stop and remove a running container
         docker rm -f kubespray-installer
@@ -42,3 +42,4 @@ tag-latest: ## Generate container `{version}` tag
 tag-version: ## Generate container `latest` tag
         @echo 'create tag $(VERSION)'
         docker tag $(APP_NAME) $(DOCKER_REPO)/$(APP_NAME):$(VERSION)
+
