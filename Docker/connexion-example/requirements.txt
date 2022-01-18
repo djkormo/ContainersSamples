@@ -1,6 +1,6 @@
 connexion>=1.1.4
 gevent>=1.1.2
-numpy==1.13
+numpy==1.21.0
 scipy>=0.19.1
 pandas>=0.20.2
 scikit_learn>=0.18
