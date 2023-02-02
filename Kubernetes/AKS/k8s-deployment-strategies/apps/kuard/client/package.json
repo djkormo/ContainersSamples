@@ -14,8 +14,8 @@
     "classnames": "^2.2.6",
     "marked": "^4.0.10",
     "numeral": "^2.0.6",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-jsonschema-form": "^0.42.0",
     "react-router-component": "^0.36.4"
   },
