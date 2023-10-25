@@ -16,4 +16,4 @@ scipy==1.10.0
 six==1.11.0
 tensorflow==2.11.1
 tensorflow-tensorboard==1.5.1
-Werkzeug==0.15.5
+Werkzeug==3.0.1
